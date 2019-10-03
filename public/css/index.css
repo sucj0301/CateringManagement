@@ -1,0 +1,71 @@
+/* 使得容器垂直铺满屏幕 */
+html,body,.my_container,.my_row {
+    height: 100%;
+}
+
+/* 侧栏导航 */
+.my_container .sider_nav {
+    background-color: #304156;
+    color: #bfcbd9;
+}
+
+/* 左侧区域  */
+.my_container .right {
+    background-color: #F2F6FC;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* 右侧区域的面包屑导航 */
+.my_container .right .bread_nav {
+    width: 100%;
+    /* 1rem  = 16px */
+    height: 5rem;
+    background-color: #ffffff;
+    box-shadow: 0 5px 8px #909399;
+    margin-bottom:1rem;
+    box-sizing: border-box;
+    padding:3rem 0 0 2rem;
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+/* 内容区域 */
+.my_container .right .content {
+    width: 100%;
+    padding: 1rem;
+    /* margin: 1rem; */
+    box-sizing: border-box; 
+    overflow-y: auto;
+    /* view height */
+    height: 80vh;
+    background-color: #ffffff;
+    border-radius: .5rem;
+}
+
+.sider_nav .sider_container .logo img {
+    /* 500px 500px */
+    width: 100%;
+    height: 80px;
+    
+}
+
+.sider_nav .sider_container .nav_list {
+    /* 2rem = 2*16=32px */
+    margin-top: 2rem;
+}
+
+.sider_nav .sider_container .nav_list ul li {
+    height: 3.5rem;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 800;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    /* 垂直居中 */
+    line-height: 3.5rem;  
+}
+
+.sider_nav .sider_container .nav_list ul li:hover {
+    background-color: #263445;
+}
