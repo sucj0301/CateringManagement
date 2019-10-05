@@ -1,5 +1,20 @@
-<div class="home">
-    <h1>我是首页</h1>
+<!-- 为了保证组件内部样式不会对全局造成污染，我们选择模仿vue的scope样式写法 -->
+<div>
+    <h1 class="text-center">味惑餐饮管理系统</h1>
+    <div class="home d-flex" data-v="home"> 
+        <div class="approval text-center">
+            <span class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-"></span>
+            <p>2435</p>
+        </div>
+        <div class="browse text-center">
+            <span class="iconfont icon-yanjing"></span>
+            <p>32324</p>
+        </div>
+        <div class="comment text-center">
+            <span class="iconfont icon-pinglunshu"></span>
+            <p>9856</p>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -7,4 +22,32 @@
 </script>
 
 <style>
+.home[data-v='home'] {
+    padding: 1.5rem;
+    box-sizing: border-box;
+    margin-top: 5rem;
+}
+div[data-v='home'] div {
+    margin-left: 1rem;
+    background-color: #ffffff;
+    height: 200px;
+    width:calc(100 / 3 * 100%);
+    border-radius: .5rem;
+    box-shadow: 0 0 .5rem #C0C4CC;
+  
+}
+
+div[data-v='home'] div:first-child {
+    margin-left: 0;
+}
+
+div[data-v='home'] div span.iconfont {
+    font-size: 5rem;
+    line-height: 120px;
+}
+
+div[data-v='home'] div p {
+    font-size: 2rem;
+}
+
 </style>

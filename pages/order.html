@@ -1,10 +1,39 @@
 <div class="order">
-        <h1>我是订单</h1>
-    </div>
-    
-    <script>
-    
-    </script>
-    
-    <style>
-    </style>
+    <h1>我是订单</h1>
+</div>
+
+
+
+
+<script src="./public/js/apis/order.js"></script>
+<script>
+
+
+    //测试
+    order.findAll(function(data){
+        console.log(data,'订单');
+    })
+
+    order.deleteById(902,function(data){
+        console.log(data,'通过id删除订单');
+    })
+
+    order.queryPage({
+        page:1,
+        pageSize:4
+    },function(data){
+        console.log(data,'分页查询订单信息');
+    })
+
+    order.batchDelete([943,944],function(data){
+        console.log(data,'批量删除订单')
+    })
+
+    order.save(function(data){
+        console.log(data,'保存订单信息')
+    })
+
+</script>
+
+<style>
+</style>

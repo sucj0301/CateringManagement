@@ -43,6 +43,7 @@ html,body,.my_container,.my_row {
     border-radius: .5rem;
 }
 
+/* logo */
 .sider_nav .sider_container .logo img {
     /* 500px 500px */
     width: 100%;
@@ -50,6 +51,7 @@ html,body,.my_container,.my_row {
     
 }
 
+/* 导航 */
 .sider_nav .sider_container .nav_list {
     /* 2rem = 2*16=32px */
     margin-top: 2rem;
