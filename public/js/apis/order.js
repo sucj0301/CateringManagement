@@ -19,7 +19,7 @@ var order = {
        request.post('order/batchDelete',data,fn);
    },
    //保存订单信息
-   save : function (data,fn) {
+   saveOrUpdate : function (data,fn) {
        request.post('order/save',data,fn);
    }
 

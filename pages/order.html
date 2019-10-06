@@ -1,39 +1,89 @@
-<div class="order">
-    <h1>我是订单</h1>
+<div class="order d-flex flex-column" data-v="order">
+    <div class="btns">
+
+    </div>
+
+    <div class="table_container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <input type="checkbox" />
+                    </th>
+                    <th scope="col">顾客编号</th>
+                    <th scope="col">下单时间</th>
+                    <th scope="col">订单量</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">地址编号</th>
+                    <th scope="col">客服编号</th>
+                    <th scope="col">备注</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
 
 
 <script src="./public/js/apis/order.js"></script>
+<script src="./public/js/services/order/data-process.js"></script>
 <script>
+    $(function(){
+        PubSub.subscribe('appendFinished',function(msg){
+            if(msg) {
+                $('.inputData').hide();
+                orderData.deleteById();
+                orderData.saveOrUpdate();
+            }
+        });
 
-
-    //测试
-    order.findAll(function(data){
-        console.log(data,'订单');
+        //执行数据初始化 
+        orderData.dataInit();
     })
 
-    order.deleteById(902,function(data){
-        console.log(data,'通过id删除订单');
-    })
+    // //测试
+    // order.findAll(function(data){
+    //     console.log(data,'查询所有订单');
+    // })
 
-    order.queryPage({
-        page:1,
-        pageSize:4
-    },function(data){
-        console.log(data,'分页查询订单信息');
-    })
+    // order.deleteById(974,function(data){
+    //     console.log(data,'通过id删除订单');
+    // })
 
-    order.batchDelete([943,944],function(data){
-        console.log(data,'批量删除订单')
-    })
+    // order.queryPage({
+    //     page:1,
+    //     pageSize:4
+    // },function(data){
+    //     console.log(data,'分页查询订单信息');
+    // })
 
-    order.save(function(data){
-        console.log(data,'保存订单信息')
-    })
+    // order.batchDelete([943,944],function(data){
+    //     console.log(data,'批量删除订单')
+    // })
+
+    // order.saveOrUpdate(function(data){
+    //     console.log(data,'保存订单信息')
+    // })
 
 </script>
 
 <style>
+    div[data-v="order"] {
+
+    }
+    
+    /* 按钮组样式 */
+    div[data-v="order"] .btns {
+
+    }
+
+    /* 表格样式 */
+    div[data-v="order"] .table {
+
+    }
 </style>

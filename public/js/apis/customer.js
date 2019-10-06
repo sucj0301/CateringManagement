@@ -39,7 +39,7 @@ var customer = {
 
     //保存或者修改
     saveOrUpdate : function(data,fn) {
-        request.post('customer/saveOrUpdate',data,fn)
+        request.post('customer/saveOrUpdate',data,fn);
     },
 
     //批量删除

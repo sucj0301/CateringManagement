@@ -1,36 +1,47 @@
-<div class="customer" data-v="customer">
-       
+<div class="customer d-flex flex-column" data-v="customer">
+       <div class="btns">
+
+       </div>
+
+       <div class="table_container" >
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">
+                    <input type="checkbox" />
+                </th>
+                <th scope="col">姓名</th>
+                <th scope="col">电话</th>
+                <th scope="col">密码</th>
+                <th scope="col">状态</th>
+                <th scope="col">照片</th>
+                <th scope="col">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+       </div>
 </div>
     
 
 <script src="./public/js/apis/customer.js"></script>
+<script src="./public/js/services/customer/data-process.js"></script>
+
 <script>
+
     $(function(){
-        customer.findAll(function(data){
-            console.log(data);
-        })
+        PubSub.subscribe('appendFinished',function(msg){
+            if(msg) {
+                $('.inputData').hide();
+                customerData.deleteById();
+                customerData.update();
+          
+            }            
+        });
 
-    //测试
-    customer.findAll(function(data){
-        console.log(data,'顾客');
-    })
-
-    customer.deleteById(5,function(data){
-        console.log(data,'通过id删除');
-    })
-
-    customer.query({
-        page:1,
-        pageSize:4
-    },function(data){
-        console.log(data,'分页请求');
-    })
-
-    customer.batchDelete([1221649,1221650],function(data){
-        console.log(data,'批量删除');
-    })
-
-   
+        customerData.dataInit();
 
     })
 </script>
@@ -40,4 +51,15 @@
 
     }
 
+    /* 按钮组的样式 */
+    div[data-v="customer"] .btns {
+
+    }
+
+    /* 表格样式 */
+    div[data-v="customer"] .table {
+
+    }
+        
+    
 </style>
