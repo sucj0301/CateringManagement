@@ -27,6 +27,16 @@ var customerData = {
 
     dataInit : function() {
         $('tbody').empty();
+        //分页查询：
+        // customer.query({
+        //     page:0,
+        //     pageSize:4
+        // },function(data){
+        //     cache.set('pageInfo',{
+        //         page : data.data.page,
+        //         pageSize : data.data.pageSize,
+        //         total : data.data.total
+        //     });(
         customer.findAll(function(data){
             // console.log(data);         
             var template = "";
@@ -105,9 +115,108 @@ var customerData = {
 
             $('tbody').append(template);
            
+            //追加完成后的提示
             PubSub.publish('appendFinished',true);
         })
     },
+
+    /*
+    query : function() {
+        $('.prevBtn').on('click',function () {
+            var pageInfo = cache.get('pageInfo');
+            cache.set('pageIndex',pageInfo.page--);
+            console.log(cache.get('pageIndex'))
+            if(cache.get('pageIndex') <= 0) {
+                alert('没有更多的数据了!');
+            } else {
+                $('tbody').empty();
+                customer.query({
+                    page: pageInfo.page,
+                    pageSize: pageInfo.pageSize
+                }, function (data) {
+                    // console.log(data);
+                    cache.set('pageInfo', {
+                        page: data.data.page,
+                        pageSize: data.data.pageSize,
+                        total: data.data.total
+                    });
+                    var template = '';
+                    data.data.list.map(function (item, index) {
+                        template +=
+                            `
+                        <tr data-id="${item.id}">
+                                <th scope="row">
+                                    <input type="checkbox" value="${item.id}"/>
+                                </th>
+                                <td style="width: 150px">
+                                <span class="currentData">
+                                ${customerData.dataProcess('realname', item.realname)}
+                                </span>
+                                <input type="text"
+                                    class="form-control inputData form-control-sm"
+                                    name="realname"
+                                    value="${customerData.dataProcess('realname', item.realname)}"
+                                    placeholder="请输入真实姓名"/>
+                                </td>
+                                <td>
+                                <span class="currentData">
+                                ${customerData.dataProcess('telephone', item.telephone)}
+                                </span>
+                                <input type="text"
+                                    class="form-control inputData form-control-sm"
+                                    name="telephone"
+                                    value=" ${customerData.dataProcess('telephone', item.telephone)}"
+                                    placeholder="请输入电话号码"/>
+                                </td>
+                                <td>
+                                <span class="currentData">
+                                ${customerData.dataProcess('password', item.password)}
+                                </span>
+                                <input type="text"
+                                    class="form-control inputData form-control-sm"
+                                    name="password"
+                                    value=" ${customerData.dataProcess('password', item.password)}"
+                                    placeholder="请输入密码"/>
+                                </td>
+                                <td>
+                                <span class="currentData">
+                                ${customerData.dataProcess('status', item.status)}
+                                </span>
+                                <input type="text"
+                                    class="form-control inputData form-control-sm"
+                                    value="${customerData.dataProcess('status', item.status)}"
+                                    name="status"
+                                    placeholder="请输入状态"/>
+                                </td>
+                                <td>
+                                <span class="currentData">
+                                ${customerData.dataProcess('photo', item.photo)}
+                                </span>
+                                <input type="text"
+                                    class="form-control inputData form-control-sm"
+                                    value="${customerData.dataProcess('photo', item.photo)}"
+                                    name="photo"
+                                    placeholder="请输入图片地址"/>
+                                </td>
+                                <td>
+                                    <button
+                                        class="btn btn-primary btn-sm updateBtn"
+                                        data-id="${item.id}">修改</button>
+                                    <button
+                                        class="btn btn-danger btn-sm deleteBtn"
+                                        data-id="${item.id}">删除</button>
+                                </td>
+                            </tr>
+                                    `
+                    });
+
+                    $('tbody').append(template);
+                    PubSub.publish('appendFinished', true);
+                })
+            }
+        });
+    },
+    */
 
     deleteById : function() {
 
@@ -164,7 +273,44 @@ var customerData = {
                 $(`tr[data-id="${$(this).attr('data-id')}"] .inputData`).show();             
             }
         })
-    }
+    },
+
+    //批量删除
+    batchDelete : function (){     
+        $('.delAll').on('click',function() {
+            var checkedList = [];
+            $("input[type='checkbox']:checked").each(function (index, item) {
+                // console.log(Number.parseInt(item.value));
+                if (!Number.isNaN(Number.parseInt(item.value))) {
+                    checkedList.push(item.value);
+                }
+
+            });
+
+            console.log(checkedList)
+
+            customer.batchDelete(checkedList,function (data) {
+                console.log(data);
+                if(data.status === 200) {
+                    notify('success','批量删除成功！！！');
+                    customerData.dataInit();
+                } else {
+                    notify('error','服务器故障！！！');
+                }
+
+            });
+
+        });
+
+
+        $('.selectAll').on('change',function(){
+            if($(this).prop('checked')){
+                $("input[type='checkbox']:not(':checked')").trigger('click');
+            }else {
+                $("input[type='checkbox']:checked").trigger('click');
+            }                                  
+        })
+        }
 
 
 };

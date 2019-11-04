@@ -1,14 +1,17 @@
 <div class="customer d-flex flex-column" data-v="customer">
-       <div class="btns">
 
+       <!-- 删除按钮组 -->
+       <div class="btns">
+            <button class="btn btn-warning delAll">批量删除</button>
        </div>
 
+        <!-- 表格容器 -->
        <div class="table_container" >
         <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">
-                    <input type="checkbox" />
+                    <input type="checkbox" class="selectAll"/>
                 </th>
                 <th scope="col">姓名</th>
                 <th scope="col">电话</th>
@@ -23,6 +26,17 @@
             </tbody>
           </table>
        </div>
+
+       <!-- 分页按钮容器 -->
+       <!-- <div class="pagination">   
+            <button type="button" class="btn btn-primary prevBtn">
+                Prev
+            </button>
+            &emsp;
+            <button type="button" class="btn btn-primary nextBtn">
+                Next
+            </button>      
+       </div> -->
 </div>
     
 
@@ -37,11 +51,16 @@
                 $('.inputData').hide();
                 customerData.deleteById();
                 customerData.update();
-          
-            }            
-        });
+                customerData.batchDelete();
 
-        customerData.dataInit();
+                $('.nextBtn').on('click',function(){
+
+                });
+
+                }            
+            });
+
+            customerData.dataInit();
 
     })
 </script>
@@ -52,14 +71,18 @@
     }
 
     /* 按钮组的样式 */
-    div[data-v="customer"] .btns {
-
+    div[data-v="customer"] > .btns {
+        margin-bottom: 1rem;
     }
 
     /* 表格样式 */
-    div[data-v="customer"] .table {
+    div[data-v="customer"] > .table {
 
     }
         
+    /* 分页按钮样式 */
+    /* div[data-v="customer"] > .pagination {
+        margin: 0 auto;
+    } */
     
 </style>

@@ -45,6 +45,9 @@ var customer = {
     //批量删除
     batchDelete : function(data,fn) {
         data = data.join(',');
-        request.post('customer/batchDelete',data,fn);
+        request.post('customer/batchDelete',{
+            ids:data
+        },fn);
     }
+    
 }
