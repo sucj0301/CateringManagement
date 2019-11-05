@@ -20,6 +20,6 @@
 ## 特点
 
 > 1.模仿了vue模块化机制
-  2.使用了涉及模式中的订阅-发布模式
-  3.使用了H5的WebStorage存储机制(sessionstroage)
+> 2.使用了涉及模式中的订阅-发布模式
+> 3.使用了H5的WebStorage存储机制(sessionstroage)
   
