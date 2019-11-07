@@ -19,7 +19,7 @@
 
 - 1.样式管理部分模仿了vue模块化机制（scope写法）
 - 2.处理异步请求使用到了设计模式中的`发布订阅模式`
-- 3.使用了H5的WebStorage存储机制(sessionStoage)r
+- 3.使用了H5的WebStorage存储机制(sessionStorage)
 
 ## LICENSE [MIT]()
 
